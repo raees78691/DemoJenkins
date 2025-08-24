@@ -40,7 +40,7 @@ pipeline {
     }
 
     stage('Deploy') {
-            when { branch 'main' } // only deploy from main
+
       steps {
                 echo 'Deploy step here (Docker build / copy JAR to server / AWS etc.)'
         }
