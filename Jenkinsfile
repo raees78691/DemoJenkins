@@ -39,12 +39,16 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
 
-      steps {
-                echo 'Deploy step here (Docker build / copy JAR to server / AWS etc.)'
-        }
-      }
+
+      stage('Deploy') {
+            when { branch 'main' }
+  steps {
+                bat 'docker build -t springboot-app:%BUILD_NUMBER% .'
+    bat 'docker rm -f springboot-app || exit /b 0'
+    bat 'docker run -d --name springboot-app -p 8050:8050 springboot-app:%BUILD_NUMBER%'
+  }
+}
 
   }
 
