@@ -42,7 +42,7 @@ pipeline {
 
 
       stage('Deploy') {
-            when { branch 'main' }
+
   steps {
                 bat 'docker build -t springboot-app:%BUILD_NUMBER% .'
     bat 'docker rm -f springboot-app || exit /b 0'
